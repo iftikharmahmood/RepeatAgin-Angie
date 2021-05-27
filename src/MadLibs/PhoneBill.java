@@ -10,10 +10,10 @@ import java.util.Scanner;
 
 public class PhoneBill {
 
-    public  static double basePlan;
-    public  static double overage;
-    public static final double vat = 0.15;
-    public static Scanner scanner = new Scanner(System.in);
+    static double basePlan;
+    static double overage;
+    static final double vat = 0.15;
+    static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
 
