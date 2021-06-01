@@ -31,7 +31,12 @@ public class HomeAreaCalculatorRedo {
         System.out.println("Enter width of the room : ");
         double width = scanner.nextDouble();
 
-        Rectangle room = new Rectangle(length, width);
-        return room;
+        return new Rectangle(length, width);
+        /**
+         * Det samme som :
+         * Rectangle room = new Rectangle(length, width);
+         * return room;
+          */
+
     }
 }
