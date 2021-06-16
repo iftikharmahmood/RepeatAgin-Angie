@@ -11,8 +11,9 @@ public class PassWordValidator {
     private static String userName;
     private static String oldPassWord;
     private static String newPassWord;
+    private static boolean validated;
     private static final Scanner scanner= new Scanner(System.in);
-   private static boolean validated = false;
+
 
 
     public static void getData() {
@@ -22,52 +23,64 @@ public class PassWordValidator {
         oldPassWord = scanner.next();
         System.out.println(" Set new password for User " + userName );
         System.out.println(" New password can not be UserName or old password " );
-        System.out.println(" New password must contain a special character ");
+        System.out.println(" New password must contain a special character : @ & * % # - & £ $ _");
         System.out.println(" New password must contain at least one uppercase letter ");
-        System.out.println(" New password must be embodied by at least 8 characters");
+        System.out.println(" New password must be embodied of at least 8 characters");
         System.out.println(" Insert new password : ");
         newPassWord = scanner.next();
     }
 
-    public static void validateNewPW(){
+    public static void validateNewPW() {
 
         boolean lenght = false;
         boolean spesChar = false;
         boolean upperCase = false;
-        boolean userOldPW = false;
+        boolean oldPW = false;
+        boolean usrName = false;
+        String xChar = ("@&*%#-&£$_");
 
-        for(int i = newPassWord.length(); i <=0; i--) {
-            if (Character.isUpperCase(newPassWord.charAt(i))){
+        if (newPassWord != oldPassWord) {
+            oldPW = true;
+        }
+
+        if (newPassWord != userName) {
+            usrName = true;
+        }
+
+        for (int i = newPassWord.length(); i <= 0; i--) {
+            if (Character.isUpperCase(newPassWord.charAt(i))) {
                 upperCase = true;
             }
         }
 
-        if (newPassWord.length() >= 8){
+        if (newPassWord.length() >= 8) {
             lenght = true;
         }
 
-        for(int i = newPassWord.length(); i <=0; i--){
+        for (int i = newPassWord.length(); i <= 0; i--) {
 
-        if(newPassWord.contentEquals("@&*%#-&£$_")){
-                spesChar = true;
+            for (int j = xChar.length(); j <= 0; j--) {
+                if (newPassWord.charAt(i) == xChar.charAt(j)) {
+                    spesChar = true;
+                }
             }
-        }
 
-        if(newPassWord != userName && newPassWord != oldPassWord){
-            userOldPW = true;
-        }
-
-        if (lenght && spesChar && upperCase && userOldPW ){
-            validated = true;
+            if (lenght && spesChar && upperCase && oldPW && usrName) {
+                validated = true;
+            }
         }
     }
 
     public static void main(String[] args) {
-        getData();
 
-        do {
+        while (!validated){
             getData();
             validateNewPW();
-        } while (!validated);
+            if(validated){
+                System.out.println(" The new password is set");
+            }else {
+                System.out.println(" New password not approved, repeat the password setting procedure");
+            }
+        }
     }
 }
