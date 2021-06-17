@@ -58,8 +58,11 @@ public class PassWordValidator {
         }
 
         for (int i = newPassWord.length(); i <= 0; i--) {
+            System.out.println(" outer loop nr " +i );
 
             for (int j = xChar.length(); j <= 0; j--) {
+                System.out.println("Inner loop nr " +j);
+                System.out.println("spesChar status " + spesChar);
                 if (newPassWord.charAt(i) == xChar.charAt(j)) {
                     spesChar = true;
                 }
